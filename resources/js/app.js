@@ -46,6 +46,13 @@ let routes = [
     
     { 
       path: '/developer', name: 'developer', component: require('./components/Developer.vue').default  
+    },
+
+    { 
+      path: '/shippment', name: 'shippment', component: require('./components/Shippment.vue').default  
+    },
+    { 
+      path: '/info', name: 'info', component: require('./components/Info.vue').default  
     }
   ]
 

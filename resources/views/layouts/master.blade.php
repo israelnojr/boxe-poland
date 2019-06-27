@@ -129,17 +129,24 @@
           </ul>
         </li>  
         
-        <li>
-          <a href="../mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="badge badge-warning pull-right ">12</small>
-              <small class="badge badge-success pull-right ">16</small>
-              <small class="badge badge-danger pull-right ">5</small>
-            </span>
-          </a>
-        </li>
-      
+        <li class="">
+          <router-link to="/shippment">
+            <i class="fa fa-th"></i> <span>Shippments</span>
+              <span class="pull-right-container">
+              
+              </span>
+          </router-link>
+        </li> 
+
+        <li class="">
+          <router-link to="/info">
+            <i class="fa fa-th"></i> <span>Details</span>
+              <span class="pull-right-container">
+              
+              </span>
+          </router-link>
+        </li>  
+
         <li class="">
           <router-link to="/developer">
             <i class="fab fa-connectdevelop"></i> <span>Developer</span>
@@ -175,7 +182,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://twitter.com/juisdev">JuisDev</a>.</strong> All rights
+    <strong>Copyright &copy; 2019<a href="https://twitter.com/juisdev">JuisDev</a>.</strong> All rights
     reserved.
   </footer>
 
