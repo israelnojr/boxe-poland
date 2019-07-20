@@ -6,9 +6,9 @@
                     <div class="card-header d-flex align-item-center justify-content-between">
                     <h3 class="card-title">Info Table</h3>
 
-                    <!-- <div class="card-tools float-right">
-                        <button class="btn btn-success" @click="createModal" >Update Info <i class="fas fa-user-plus fa-fw"></i></button>
-                    </div> -->
+                    <div class="card-tools float-right">
+                        <button class="btn btn-success" @click="createModal" >Add New <i class="fas fa-user-plus fa-fw"></i></button>
+                    </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -16,21 +16,23 @@
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <th>Tracking Id</th>
+                            <th>Shippment Id</th>
+                            <th>Track Id</th>
                             <th>Location</th>
                             <th>Status</th>
                             <th>Remark</th>
-                            <th>Date / Time</th>
+                            <th>Registered At</th>
                             <th>Modify</th>
                         </tr>
  
                         <tr v-for=" info in infos" :key="info.id" >
                             <td>{{info.id}}</td>
+                            <td>{{info.shippment_id}}</td>
                             <td>{{info.trackId}}</td>
                             <td>{{info.location}}</td>
-                            <td>{{info.status }}</td>
-                             <td>{{info.remark }}</td>
-                            <td>{{info.created_at }}</td>
+                            <td>{{info.status}}</td>
+                            <td>{{info.remark}}</td>
+                            <td>{{info.created_at}}</td>
                             <td>
                                 <a class="btn btn-info" href="#" @click="editModal(info)">
                                     <i class="fa fa-edit blue"></i>
@@ -52,15 +54,34 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="editMode"  id="AddNewLabel">Edit Info</h5>
+                        <h5 class="modal-title" v-show="!editMode"  id="AddNewLabel">Add New</h5>
+                        <h5 class="modal-title" v-show="editMode"  id="AddNewLabel">Edit User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form @submit.prevent="updateInfo()">
+                    <form @submit.prevent=" editMode ? updateInfo() : createInfo() ">
                         <div class="modal-body">
+                             <div class="form-group">
+                                <select name="trackId" v-model="form.trackId" id="trackId" class="form-control" 
+                                    :class="{ 'is-invalid': form.errors.has('trackId') }" @click="getInfo()">
+                                    <option value="">Select Tracking ID</option>
+                                     <option v-for="shippment in shippments" :key="shippment.id" v-bind:value="shippment.key">{{shippment.key}}</option>
+                                </select>
+                                <has-error :form="form" field="trackId"></has-error>
+                            </div>
+
                             <div class="form-group">
-                                <input v-model="form.location" type="text" location="location"
+                                <select name="shippment_id" v-model="form.shippment_id" id="shippment_id" class="form-control" 
+                                    :class="{ 'is-invalid': form.errors.has('shippment_id') }"  @click="getInfo()">
+                                    <option value="">Select Shipment ID</option>
+                                     <option v-for="shippment in shippments" :key="shippment.id" v-bind:value="shippment.id">{{shippment.id}}</option>
+                                </select>
+                                <has-error :form="form" field="shippment_id"></has-error>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input v-model="form.location" type="text" name="location"
                                     placeholder="Location"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('location') }">
                                 <has-error :form="form" field="location"></has-error>
@@ -72,7 +93,7 @@
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('status') }">
                                 <has-error :form="form" field="status"></has-error>
                             </div>
-                            
+                           
                             <div class="form-group">
                                 <input v-model="form.remark" type="text" name="remark"
                                     placeholder="Remark"
@@ -83,6 +104,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button v-show="editMode" type="submit" class="btn btn-success">Update</button>
+                            <button v-show="!editMode" type="submit" class="btn btn-primary">Add Info</button>
                         </div>
                     </form>
             </div>
@@ -98,9 +120,11 @@
             return{
                 editMode: false,
                 infos: {},
+                shippments: {},
                 form: new Form({
-                    id: '',
-                    trackId: '',
+                    id:'',
+                    shippment_id:'',
+                    trackId : '',
                     location: '',
                     status: '',
                     remark: '',
@@ -108,6 +132,10 @@
             }
         },
         methods: {
+            getInfo(){
+                axios.get("api/shippment").then(({ data })=> (this.shippments = data));
+            },
+
             updateInfo(){
                 this.$Progress.start()
                 this.form.put('api/info/'+this.form.id)
@@ -118,7 +146,7 @@
                     // show success message
                     swal.fire(
                     'Updated!',
-                    'Info details updated successfully',
+                    'info details updated successfully',
                     'success'
                     )  
                      this.$Progress.finish()
@@ -138,6 +166,12 @@
                 this.form.fill(info);
             },
 
+            createModal(){
+                 this.editMode = false;
+                this.form.reset();
+                $('#AddNew').modal('show')
+            },
+
             deleteInfo(id){
                 swal.fire({
                 title: 'Are you sure?',
@@ -154,7 +188,7 @@
                         this.form.delete('api/info/'+id).then(() => {                     
                             swal.fire(
                             'Deleted!',
-                            'Info deleted.',
+                            'info deleted.',
                             'success'
                             )                     
                         }).catch(()=>{
@@ -167,9 +201,26 @@
             loadInfos(){
                 axios.get("api/info").then(({ data })=> (this.infos = data));
             },
-            
+
+            createInfo(){
+                this.$Progress.start()
+                this.form.post('api/info')
+
+                .then(() =>{
+                    // Fire.$emit('afterCreated');
+                    $('#AddNew').modal('hide')
+                    toast.fire({
+                    type: 'success',
+                    title: 'Info Created Successfully'
+                    })
+                this.$Progress.finish()
+                })
+                .catch(() =>{
+                    this.$Progress.fail()
+                })
+            }
         },
-        mounted(){
+        created(){
             this.loadInfos();
             // Fire.$on('afterCreated', () => { this.loadInfos(); })
             setInterval(() => this.loadInfos(), 3000);

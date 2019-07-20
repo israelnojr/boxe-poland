@@ -2050,13 +2050,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       editMode: false,
       infos: {},
+      shippments: {},
       form: new Form({
         id: '',
+        shippment_id: '',
         trackId: '',
         location: '',
         status: '',
@@ -2065,19 +2089,27 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    updateInfo: function updateInfo() {
+    getInfo: function getInfo() {
       var _this = this;
+
+      axios.get("api/shippment").then(function (_ref) {
+        var data = _ref.data;
+        return _this.shippments = data;
+      });
+    },
+    updateInfo: function updateInfo() {
+      var _this2 = this;
 
       this.$Progress.start();
       this.form.put('api/info/' + this.form.id).then(function () {
         // hide modal
         $('#AddNew').modal('hide'); // show success message
 
-        swal.fire('Updated!', 'Info details updated successfully', 'success');
+        swal.fire('Updated!', 'info details updated successfully', 'success');
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function () {
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       }); // alert('Edit data')
     },
     editModal: function editModal(info) {
@@ -2086,8 +2118,13 @@ __webpack_require__.r(__webpack_exports__);
       $('#AddNew').modal('show');
       this.form.fill(info);
     },
+    createModal: function createModal() {
+      this.editMode = false;
+      this.form.reset();
+      $('#AddNew').modal('show');
+    },
     deleteInfo: function deleteInfo(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       swal.fire({
         title: 'Are you sure?',
@@ -2100,8 +2137,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         //send request to the server
         if (result.value) {
-          _this2.form["delete"]('api/info/' + id).then(function () {
-            swal.fire('Deleted!', 'Info deleted.', 'success');
+          _this3.form["delete"]('api/info/' + id).then(function () {
+            swal.fire('Deleted!', 'info deleted.', 'success');
           })["catch"](function () {
             swal("Failed!", "There was something wronge.", "warning");
           });
@@ -2109,21 +2146,38 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     loadInfos: function loadInfos() {
-      var _this3 = this;
+      var _this4 = this;
 
-      axios.get("api/info").then(function (_ref) {
-        var data = _ref.data;
-        return _this3.infos = data;
+      axios.get("api/info").then(function (_ref2) {
+        var data = _ref2.data;
+        return _this4.infos = data;
+      });
+    },
+    createInfo: function createInfo() {
+      var _this5 = this;
+
+      this.$Progress.start();
+      this.form.post('api/info').then(function () {
+        // Fire.$emit('afterCreated');
+        $('#AddNew').modal('hide');
+        toast.fire({
+          type: 'success',
+          title: 'Info Created Successfully'
+        });
+
+        _this5.$Progress.finish();
+      })["catch"](function () {
+        _this5.$Progress.fail();
       });
     }
   },
-  mounted: function mounted() {
-    var _this4 = this;
+  created: function created() {
+    var _this6 = this;
 
     this.loadInfos(); // Fire.$on('afterCreated', () => { this.loadInfos(); })
 
     setInterval(function () {
-      return _this4.loadInfos();
+      return _this6.loadInfos();
     }, 3000);
   }
 });
@@ -61436,18 +61490,43 @@ var render = function() {
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+          _c(
+            "div",
+            {
+              staticClass:
+                "card-header d-flex align-item-center justify-content-between"
+            },
+            [
+              _c("h3", { staticClass: "card-title" }, [_vm._v("Info Table")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-tools float-right" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: { click: _vm.createModal }
+                  },
+                  [
+                    _vm._v("Add New "),
+                    _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  ]
+                )
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
             _c("table", { staticClass: "table table-hover" }, [
               _c(
                 "tbody",
                 [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _vm._l(_vm.infos, function(info) {
                     return _c("tr", { key: info.id }, [
                       _c("td", [_vm._v(_vm._s(info.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(info.shippment_id))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(info.trackId))]),
                       _vm._v(" "),
@@ -61528,6 +61607,23 @@ var render = function() {
                       {
                         name: "show",
                         rawName: "v-show",
+                        value: !_vm.editMode,
+                        expression: "!editMode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "AddNewLabel" }
+                  },
+                  [_vm._v("Add New")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
                         value: _vm.editMode,
                         expression: "editMode"
                       }
@@ -61535,10 +61631,10 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "AddNewLabel" }
                   },
-                  [_vm._v("Edit Info")]
+                  [_vm._v("Edit User")]
                 ),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(1)
               ]),
               _vm._v(" "),
               _c(
@@ -61547,12 +61643,150 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      return _vm.updateInfo()
+                      _vm.editMode ? _vm.updateInfo() : _vm.createInfo()
                     }
                   }
                 },
                 [
                   _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.trackId,
+                                expression: "form.trackId"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("trackId")
+                            },
+                            attrs: { name: "trackId", id: "trackId" },
+                            on: {
+                              click: function($event) {
+                                return _vm.getInfo()
+                              },
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "trackId",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select Tracking ID")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.shippments, function(shippment) {
+                              return _c(
+                                "option",
+                                {
+                                  key: shippment.id,
+                                  domProps: { value: shippment.key }
+                                },
+                                [_vm._v(_vm._s(shippment.key))]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "trackId" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.shippment_id,
+                                expression: "form.shippment_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("shippment_id")
+                            },
+                            attrs: { name: "shippment_id", id: "shippment_id" },
+                            on: {
+                              click: function($event) {
+                                return _vm.getInfo()
+                              },
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "shippment_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select Shipment ID")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.shippments, function(shippment) {
+                              return _c(
+                                "option",
+                                {
+                                  key: shippment.id,
+                                  domProps: { value: shippment.id }
+                                },
+                                [_vm._v(_vm._s(shippment.id))]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "shippment_id" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _c(
                       "div",
                       { staticClass: "form-group" },
@@ -61572,7 +61806,7 @@ var render = function() {
                           },
                           attrs: {
                             type: "text",
-                            location: "location",
+                            name: "location",
                             placeholder: "Location"
                           },
                           domProps: { value: _vm.form.location },
@@ -61703,6 +61937,23 @@ var render = function() {
                         attrs: { type: "submit" }
                       },
                       [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode,
+                            expression: "!editMode"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Add Info")]
                     )
                   ])
                 ]
@@ -61719,23 +61970,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "card-header d-flex align-item-center justify-content-between"
-      },
-      [_c("h3", { staticClass: "card-title" }, [_vm._v("Info Table")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("tr", [
       _c("th", [_vm._v("ID")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tracking Id")]),
+      _c("th", [_vm._v("Shippment Id")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Track Id")]),
       _vm._v(" "),
       _c("th", [_vm._v("Location")]),
       _vm._v(" "),
@@ -61743,7 +61983,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Remark")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Date / Time")]),
+      _c("th", [_vm._v("Registered At")]),
       _vm._v(" "),
       _c("th", [_vm._v("Modify")])
     ])
@@ -63801,6 +64041,10 @@ var render = function() {
                             }
                           },
                           [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select User Role")
+                            ]),
+                            _vm._v(" "),
                             _c("option", { attrs: { value: "admin" } }, [
                               _vm._v("Admin")
                             ]),

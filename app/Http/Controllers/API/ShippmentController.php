@@ -66,11 +66,12 @@ class ShippmentController extends Controller
         ]);
     }
 
-    public function tracker(Request $request)
-    {
-        // $tracker = $request->key;
-        return Shippment::where('key', 'riLcBYXs1KD')->with('info')->first();
-    }
+    // public function tracker(Request $request)
+    // {
+    //     $trackid = $request->key;
+    //     return = Shippment::where('key', $trackid)->with('info')->get();
+    //     return view('find')->with('find', $find);
+    // }
 
     public function update(Request $request, $id)
     {

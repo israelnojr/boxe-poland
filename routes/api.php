@@ -16,14 +16,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('tracker', 'API\ShippmentController@tracker');
+// Route::post('tracker', 'API\ShippmentController@tracker');
+// Route::get('info', 'API\InfoController@index');
 
 Route::group(['middleware'=>'auth:api'], function (){
     Route::apiResources(['user' => 'API\UserController']);
     Route::apiResources(['shippment' => 'API\ShippmentController']);
     Route::apiResources(['info' => 'API\InfoController']);
     Route::get('profile', 'API\ProfileController@setting');
-    // Route::get('tracker', 'API\ShippmentController@tracker');
     Route::put('profile', 'API\ProfileController@update');
 });
 

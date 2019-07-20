@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Shippment;
+use App\Info;
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function welcome()
     {
-        $this->middleware('auth');
+        return view('welcome');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index()
     {
         return view('layouts.master');
+    }
+
+    public function find(Request $request)
+    {
+        $trackId = $request->key;
+        // return  Shippment::where('key', $trackId)->with('info')->get();
+        $shippments = Shippment::where('key', $trackId)->get();
+        $infos = Info::where('trackId', $trackId)->get();
+
+        return view('find', compact('shippments', 'infos'));
     }
 }

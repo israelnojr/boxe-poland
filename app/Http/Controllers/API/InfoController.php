@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\info;
+use App\Shippment;
 class InfoController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class InfoController extends Controller
      */
     public function index()
     {
-        return Info::all();
+         $info = Info::with('Shippment')->get();
+         return $info;
     }
 
     /**
@@ -25,7 +27,21 @@ class InfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'shippment_id' => ['required'],
+            'trackId' => ['required'],
+            'location' => ['required'],
+            'status' => ['required'],
+            'remark' => ['required'],
+        ]);
+    
+        return Info::create([     
+            'shippment_id' => $request ['shippment_id'],
+            'trackId' => $request ['trackId'],
+            'location' => $request ['location'],
+            'status' => $request ['status'],
+            'remark' => $request ['remark'],
+        ]);
     }
 
     /**
