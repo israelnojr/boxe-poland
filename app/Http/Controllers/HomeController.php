@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
-    
+
     public function index()
     {
         return view('layouts.master');
@@ -25,5 +25,15 @@ class HomeController extends Controller
         $infos = Info::where('trackId', $trackId)->get();
 
         return view('find', compact('shippments', 'infos'));
+    }
+
+    public function services()
+    {
+      return view('service');
+    }
+
+    public function about()
+    {
+      return view('about');
     }
 }

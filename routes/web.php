@@ -18,10 +18,12 @@
 Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Route::post('/find', 'HomeController@find')->name('find');
+
+Route::get('/service', 'HomeController@services')->name('service');
+
+Route::get('/about-us', 'HomeController@about')->name('about');
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-Route::get('{path}','HomeController@index')->where('path', '[A-Za-z]+'); 
-
-
+Route::get('{path}','HomeController@index')->where('path', '[A-Za-z]+');

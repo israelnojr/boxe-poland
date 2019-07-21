@@ -19,10 +19,10 @@
                                 <a class="nav-link active_color" href=" {{route('welcome')}} ">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
+                                <a class="nav-link" href="{{route('about')}}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="service.html">Services</a>
+                                <a class="nav-link" href="{{route('service')}}">Services</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="delivery.html">delivery</a>
