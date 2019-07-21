@@ -50,17 +50,14 @@
                 <div class="col-lg-7">
                     <div class="about_part_text">
                         <div class="about_text_iner">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                            <p>We have always been revolutionizing, shaping, and simplifying the world of logistics. 
+                                From inventing the international air express industry to becoming the world’s leading logistics company; 
+                                we’re thinkers, makers and pioneers that constantly challenge what’s possible. 
+                                And now we’re tackling the ultimate border: delivering to the moon.
                             </p>
-                            <p>sedeiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                                ipsum suspendisse ultrices gravida. Risus commodo viverra Lorem
-                                ipsum dolor sit amet, </p>
+                            <p>In 1969, the year Neil Armstrong was the first man to walk on the moon, We began to revolutionize the world of logistics. Now, 
+                                we are breaking new ground again: in cooperation with space technology company Astrobotics, 
+                                we will make deliveries to the moon a reality.</p>
                         </div>
                     </div>
                 </div>
@@ -77,13 +74,10 @@
                 <div class="col-lg-5">
                     <div class="service_text">
                         <h2>Boxe Best <br><span> Deliverie Services </span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Quis is ipsum Lorem</p>
-                        <p>Psum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad mini veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate dolor in
-                            reprehenderit.</p>
+                        <p>Achieve your sustainability goals with help from BOXE services and practices created with our promise to efficiency and environmental responsibility in mind.</p>
+                        <p>As one of the world’s largest and most innovative employers, we take special pride in our people. 
+                            We’re a global company that values diversity, ambition and a collaborative can-do attitude. 
+                            And that offers you all the support you need to make your career as rewarding as possible. Join us now and realize your full potential.</p>
                         <a href="service.html" class="btn_1">learn more</a>
                     </div>
                 </div>
@@ -91,26 +85,23 @@
                     <div class="single_service_text">
                         <img src="{{asset('frontend/img/icon/service_1.svg')}}" alt="">
                         <h4>Planning</h4>
-                        <p>lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut
-                            labore </p>
+                        <p>We’re committed to helping customers pioneer more sustainable solutions</p>
                     </div>
                     <div class="single_service_text">
                         <img src="{{asset('frontend/img/icon/service_2.svg')}}" alt="">
                         <h4>List Delivery</h4>
-                        <p>lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut
-                            labore </p>
+                        <p>Services and technology for managing your shipping process – from individuals to enterprises, 
+                            local to global. </p>
                     </div>
                     <div class="single_service_text">
                         <img src="{{asset('frontend/img/icon/service_3.svg')}}" alt="">
                         <h4>Transport</h4>
-                        <p>lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut
-                            labore </p>
+                        <p>Services and technology for managing your shipping process – from individuals to enterprises, local to global. </p>
                     </div>
                     <div class="single_service_text">
                         <img src="{{asset('frontend/img/icon/service_4.svg')}}" alt="">
-                        <h4>Inventory</h4>
-                        <p>lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut
-                            labore </p>
+                        <h4>Tracking</h4>
+                        <p>Monitoring and management solutions for individuals, complex global supply chains, and everyone in between. </p>
                     </div>
                 </div>
             </div>

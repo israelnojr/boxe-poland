@@ -6173,4 +6173,26 @@ h6 {
   margin-bottom: 0px !important;
 }
 
+.form-tracker{
+  background-color: #fff;
+  width: 50%;
+  height: 50px;
+}
+
+.tracker-input{
+  width: 70%;
+  height: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+}
+
+.tracker-btn{
+  width: 30%;
+  outline: none;
+  border: none;
+  font-size: 2.5rem;
+  background-color: #f6a515;
+  color: #fff;
+}
 /*# sourceMappingURL=style.css.map */
