@@ -25,9 +25,9 @@
                                 <a class="nav-link" href="{{route('service')}}">Services</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="delivery.html">delivery</a>
+                                <a class="nav-link" href="{{route('delivery')}}">delivery</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Blog
@@ -37,9 +37,9 @@
                                     <a class="dropdown-item" href="single-blog.html">Single blog</a>
                                     <a class="dropdown-item" href="elements.html">Elements</a>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                                <a class="nav-link" href="{{route('contact')}}">Contact</a>
                             </li>
                         </ul>
                     </div>

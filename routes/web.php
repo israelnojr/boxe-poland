@@ -17,6 +17,10 @@
 
 Route::get('/', 'HomeController@welcome')->name('welcome');
 
+Route::get('/delivery', 'HomeController@delivery')->name('delivery');
+
+Route::get('/contact-us', 'HomeController@contact')->name('contact');
+
 Route::post('/find', 'HomeController@find')->name('find');
 
 Route::get('/service', 'HomeController@services')->name('service');
