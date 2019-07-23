@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace boxe\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Shippment;
+use boxe\Http\Controllers\Controller;
+use boxe\Shippment;
 class ShippmentController extends Controller
 {
     /**

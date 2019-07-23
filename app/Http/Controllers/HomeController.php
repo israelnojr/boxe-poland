@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace boxe\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Shippment;
-use App\Info;
+use boxe\shippment;
+use boxe\info;
 class HomeController extends Controller
 {
     public function welcome()
@@ -21,8 +21,8 @@ class HomeController extends Controller
     {
         $trackId = $request->key;
         // return  Shippment::where('key', $trackId)->with('info')->get();
-        $shippments = Shippment::where('key', $trackId)->get();
-        $infos = Info::where('trackId', $trackId)->get();
+        $shippments = shippment::where('key', $trackId)->get();
+        $infos = info::where('trackId', $trackId)->get();
 
         return view('find', compact('shippments', 'infos'));
     }

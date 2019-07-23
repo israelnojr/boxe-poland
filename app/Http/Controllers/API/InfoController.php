@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace boxe\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\info;
-use App\Shippment;
+use boxe\Http\Controllers\Controller;
+use boxe\info;
+use boxe\Shippment;
 class InfoController extends Controller
 {
     /**
