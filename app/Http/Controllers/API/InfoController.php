@@ -5,7 +5,7 @@ namespace boxe\Http\Controllers\API;
 use Illuminate\Http\Request;
 use boxe\Http\Controllers\Controller;
 use boxe\info;
-use boxe\Shippment;
+use boxe\shippment;
 class InfoController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class InfoController extends Controller
      */
     public function index()
     {
-         $info = Info::with('Shippment')->get();
+         $info = info::with('Shippment')->get();
          return $info;
     }
 
@@ -35,7 +35,7 @@ class InfoController extends Controller
             'remark' => ['required'],
         ]);
     
-        return Info::create([     
+        return info::create([     
             'shippment_id' => $request ['shippment_id'],
             'trackId' => $request ['trackId'],
             'location' => $request ['location'],
@@ -64,7 +64,7 @@ class InfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $info = Info::findOrFail($id);
+        $info = info::findOrFail($id);
         $this->validate($request, [
             'trackId' => ['required'],
             'location' => ['required'],
@@ -85,7 +85,7 @@ class InfoController extends Controller
      */
     public function destroy($id)
     {
-        $info = Info::findOrFail($id);
+        $info = info::findOrFail($id);
         $info->delete();
         return ['message' => 'Info Deleted'];
     }

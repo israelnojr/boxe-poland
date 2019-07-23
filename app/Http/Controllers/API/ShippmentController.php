@@ -4,7 +4,7 @@ namespace boxe\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use boxe\Http\Controllers\Controller;
-use boxe\Shippment;
+use boxe\shippment;
 class ShippmentController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class ShippmentController extends Controller
      */
     public function index()
     {
-        return Shippment::all(); //latest()->paginate(5);
+        return shippment::all(); //latest()->paginate(5);
     }
 
     /**
@@ -45,7 +45,7 @@ class ShippmentController extends Controller
             'description' => ['required', 'string'],
         ]);
     
-        return Shippment::create([
+        return shippment::create([
             'key' => str_random(11),
             'title' => $request ['title'],     
             'shipperName' => $request ['shipperName'], 
@@ -75,7 +75,7 @@ class ShippmentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $shippment = Shippment::findOrFail($id);
+        $shippment = shippment::findOrFail($id);
         $this->validate($request, [
             'key' => [],                    
             'title' => ['required', 'string' ], 
@@ -109,7 +109,7 @@ class ShippmentController extends Controller
      */
     public function destroy($id)
     {
-        $shippment = Shippment::findOrFail($id);
+        $shippment = shippment::findOrFail($id);
         $shippment->delete();
         return ['message' => 'shippment Deleted'];
     }
