@@ -10,6 +10,6 @@ class info extends Model
     
     public function shippment()
     {
-        return $this->belongsTo(Shippment::class);
+        return $this->belongsTo(shippment::class);
     }
 }

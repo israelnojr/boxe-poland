@@ -21,6 +21,6 @@ class shippment extends Model
     }
     public function info()
     {
-        return $this->hasMany(Info::class);
+        return $this->hasMany(info::class);
     }
 }
