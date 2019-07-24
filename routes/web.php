@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@welcome')->name('welcome');
+Route::get('/', 'HomeController@welcome')->name('welcome'); 
 
 Route::get('/delivery', 'HomeController@delivery')->name('delivery');
 

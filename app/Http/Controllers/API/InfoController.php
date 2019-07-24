@@ -15,7 +15,7 @@ class InfoController extends Controller
      */
     public function index()
     {
-         $info = info::with('Shippment')->get();
+         $info = info::with('shippment')->get();
          return $info;
     }
 
