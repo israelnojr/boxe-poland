@@ -2,6 +2,7 @@
 
 namespace boxe;
 
+use auth;
 use Illuminate\Database\Eloquent\Model;
 
 class shippment extends Model
@@ -14,7 +15,8 @@ class shippment extends Model
 
         static::created( function($shippment){
             $shippment->info()->create([
-                'trackId' => $shippment->key
+                'trackId' => $shippment->key,
+                'user_id' => auth::id()
             ]);
 
         });
@@ -22,5 +24,10 @@ class shippment extends Model
     public function info()
     {
         return $this->hasMany(info::class);
+    }
+
+    public function user()
+    {
+        return $this->blongsTo(User::class);
     }
 }

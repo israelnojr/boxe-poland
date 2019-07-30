@@ -2,9 +2,11 @@
 
 namespace boxe\Http\Controllers\API;
 
+use auth;
+use boxe\shippment;
 use Illuminate\Http\Request;
 use boxe\Http\Controllers\Controller;
-use boxe\shippment;
+
 class ShippmentController extends Controller
 {
     /**
@@ -14,7 +16,12 @@ class ShippmentController extends Controller
      */
     public function index()
     {
-        return shippment::all(); //latest()->paginate(5);
+        if(auth()->user()->type == 'admin'){
+            return shippment::all();
+        }else{
+            $user = auth()->user();
+            return $user->shippment()->get();
+        }
     }
 
     /**
@@ -47,6 +54,7 @@ class ShippmentController extends Controller
     
         return shippment::create([
             'key' => str_random(11),
+            'user_id' => auth::id(),
             'title' => $request ['title'],     
             'shipperName' => $request ['shipperName'], 
             'shipperNum' => $request ['shipperNum' ], 

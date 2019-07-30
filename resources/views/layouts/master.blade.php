@@ -45,7 +45,7 @@
                   <img src="{{asset('images/adminlte.jpg')}}" class="rounded-circle" alt="User Image">
 
                   <p>
-                    {{Auth::user()->name}} - Web Developer
+                    {{Auth::user()->name}} - {{Auth::user()->type}}
                     <small>Member since {{Auth::user()->created_at->toFormattedDateString()}}</small>
                   </p>
                 </li>
@@ -113,7 +113,7 @@
               </span>
           </router-link>
         </li>  
-        
+    @can('isAdmin')
         <li class="treeview">
           <a href="#">
           <i class="fas fa-tasks"></i></i> <span>Management</span>
@@ -128,7 +128,7 @@
             
           </ul>
         </li>  
-        
+    @endcan 
         <li class="">
           <router-link to="/shippment">
             <i class="fa fa-th"></i> <span>Shippments</span>
@@ -146,16 +146,14 @@
               </span>
           </router-link>
         </li>  
-
+    @can('isDeveloper')
         <li class="">
           <router-link to="/developer">
             <i class="fab fa-connectdevelop"></i> <span>Developer</span>
-              <span class="pull-right-container">
-              
-              </span>
+              <span class="pull-right-container"></span>
           </router-link>
         </li> 
-
+    @endcan
       </ul>
     </section>
     <!-- /.sidebar -->

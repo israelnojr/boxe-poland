@@ -2,10 +2,12 @@
 
 namespace boxe\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-use boxe\Http\Controllers\Controller;
+use auth;
 use boxe\info;
 use boxe\shippment;
+use Illuminate\Http\Request;
+use boxe\Http\Controllers\Controller;
+
 class InfoController extends Controller
 {
     /**
@@ -15,8 +17,13 @@ class InfoController extends Controller
      */
     public function index()
     {
-         $info = info::with('shippment')->get();
-         return $info;
+        if(auth()->user()->type == 'admin'){
+            $info = info::with('shippment')->get();
+            return $info;
+        }else{
+            $user = auth()->user();
+            return $user->info()->with('shippment')->get();
+        }
     }
 
     /**
@@ -35,7 +42,8 @@ class InfoController extends Controller
             'remark' => ['required'],
         ]);
     
-        return info::create([     
+        return info::create([
+            'user_id' => auth::id(),     
             'shippment_id' => $request ['shippment_id'],
             'trackId' => $request ['trackId'],
             'location' => $request ['location'],

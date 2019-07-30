@@ -22,6 +22,7 @@ class CreateInfosTable extends Migration
             $table->string('remark')->nullable();
             $table->timestamps();
 
+            $table->index('user_id');
             $table->index('shippment_id');
         });
     }

@@ -37,6 +37,7 @@ class CreateShippmentsTable extends Migration
             $table->text('description');
             
             $table->timestamps();
+            $table->index('user_id');
         });
     }
 
