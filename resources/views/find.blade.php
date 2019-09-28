@@ -11,8 +11,8 @@
                     <h5 class="card-title">Sender Informations</h5>
                     @forelse($shippments as $shippment)
                         <p class="card-text"> <strong>Sender Name:</strong> <span>{{$shippment->shipperName}}</span> </p>
-                        <p class="card-text"> <strong>Sender Name:</strong> <span>{{$shippment->shipperNum}}</span> </p>
-                        <p class="card-text"> <strong>Sender Name:</strong> <span>{{$shippment->shipperAddress}}</span> </p>
+                        <p class="card-text"> <strong>Sender Phone No.:</strong> <span>{{$shippment->shipperNum}}</span> </p>
+                        <p class="card-text"> <strong>Sender Address:</strong> <span>{{$shippment->shipperAddress}}</span> </p>
                     @empty
                         <p class="card-text">No Shippment available</p>
                     @endforelse
@@ -25,8 +25,8 @@
                     <h5 class="card-title">Receiver Informations</h5>
                     @forelse($shippments as $shippment)
                         <p class="card-text"> <strong>Receiver Name:</strong> <span>{{$shippment->recieverName}}</span> </p>
-                        <p class="card-text"> <strong>Receiver Name:</strong> <span>{{$shippment->recieverNum}}</span> </p>
-                        <p class="card-text"> <strong>Receiver Name:</strong> <span>{{$shippment->recieverAddress}}</span> </p>
+                        <p class="card-text"> <strong>Receiver Phone No.:</strong> <span>{{$shippment->recieverNum}}</span> </p>
+                        <p class="card-text"> <strong>Receiver Address:</strong> <span>{{$shippment->recieverAddress}}</span> </p>
                     @empty
                         <p class="card-text">No Shippment available</p>
                     @endforelse
