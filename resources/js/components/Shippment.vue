@@ -213,6 +213,7 @@
                     weight: '',
                     departure: '',
                     destination: '',
+                    bookingMode: '',
                     amount: '',
                     mode: '',
                     pickupDate: '',
@@ -236,12 +237,15 @@
                     )  
                      this.$Progress.finish()
                 })
-
                 .catch(() => {
                    this.$Progress.fail()
+                    swal.fire(
+                    'Failed!',
+                    'Account is Disabled contact admin to enable it',
+                    'error'
+                    ) 
                 })
 
-                // alert('Edit data')
             },
 
             editModal(shippment){
@@ -302,6 +306,11 @@
                 })
                 .catch(() =>{
                     this.$Progress.fail()
+                     swal.fire(
+                    'Failed!',
+                    'Account is Disabled contact admin to enable it',
+                    'error'
+                    ) 
                 })
             }
         },

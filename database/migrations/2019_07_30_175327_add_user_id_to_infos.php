@@ -15,6 +15,8 @@ class AddUserIdToInfos extends Migration
     {
         Schema::table('infos', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
+
+            $table->index('user_id');
         });
     }
 

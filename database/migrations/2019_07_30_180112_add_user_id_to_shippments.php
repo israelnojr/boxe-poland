@@ -15,6 +15,7 @@ class AddUserIdToShippments extends Migration
     {
         Schema::table('shippments', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
+            $table->index('user_id');
         });
     }
 

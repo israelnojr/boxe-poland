@@ -146,14 +146,21 @@
                     // show success message
                     swal.fire(
                     'Updated!',
-                    'info details updated successfully',
+                    'Info details updated successfully',
                     'success'
                     )  
-                     this.$Progress.finish()
+
+                    this.$Progress.finish()
                 })
 
                 .catch(() => {
                    this.$Progress.fail()
+
+                    swal.fire(
+                    'Failed!',
+                    'Account is Disabled contact admin to enable it',
+                    'error'
+                    ) 
                 })
 
                 // alert('Edit data')
@@ -217,6 +224,11 @@
                 })
                 .catch(() =>{
                     this.$Progress.fail()
+                    swal.fire(
+                    'Failed!',
+                    'Account is Disabled contact admin to enable it',
+                    'error'
+                    ) 
                 })
             }
         },

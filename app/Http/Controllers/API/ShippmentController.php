@@ -32,80 +32,83 @@ class ShippmentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [                
-            'key' => ['unique:shippments'],                    
-            'title' => ['required', 'string' ], 
-            'shipperName' => ['required', 'string' ],
-            'shipperNum' => ['required', 'max:15' ],
-            'shipperAddress'  => ['required', 'string'],
-            'recieverName' => ['required', 'string'],
-            'recieverNum'  => ['required', 'max:15' ],
-            'recieverAddress' => ['required', 'string'],
-            'type'        => ['required', 'string'],
-            'weight'      => ['required'],
-            'departure'   => ['required', 'string'],
-            'destination' => ['required', 'string'],
-            'bookingMode' => ['required', 'string'],
-            'amount'      => ['required'],
-            'mode'        => ['required', 'string'],
-            'pickupDate'  => ['required', 'string'],
-            'description' => ['required', 'string'],
-        ]);
-    
-        return shippment::create([
-            'key' => str_random(11),
-            'user_id' => auth::id(),
-            'title' => $request ['title'],     
-            'shipperName' => $request ['shipperName'], 
-            'shipperNum' => $request ['shipperNum' ], 
-            'shipperAddress'  => $request ['shipperAddress'],
-            'recieverName' => $request ['recieverName'],
-            'recieverNum'  => $request ['recieverNum' ],
-            'recieverAddress' => $request ['recieverAddress'],
-            'type'        => $request ['type'],
-            'weight'      => $request ['weight'],
-            'departure'   => $request ['departure'],
-            'destination' => $request ['destination'],
-            'bookingMode' => $request ['bookingMode'],
-            'amount'      => $request ['amount'],
-            'mode'        => $request ['mode'],
-            'pickupDate'  => $request ['pickupDate'],
-            'description' => $request ['description'],
-        ]);
+        if(auth()->user()->type != 'disabled'){
+            $this->validate($request, [                
+                'key' => ['unique:shippments'],                    
+                'title' => ['required', 'string' ], 
+                'shipperName' => ['required', 'string' ],
+                'shipperNum' => ['required', 'max:15' ],
+                'shipperAddress'  => ['required', 'string'],
+                'recieverName' => ['required', 'string'],
+                'recieverNum'  => ['required', 'max:15' ],
+                'recieverAddress' => ['required', 'string'],
+                'type'        => ['required', 'string'],
+                'weight'      => ['required'],
+                'departure'   => ['required', 'string'],
+                'destination' => ['required', 'string'],
+                'bookingMode' => ['required', 'string'],
+                'amount'      => ['required'],
+                'mode'        => ['required', 'string'],
+                'pickupDate'  => ['required', 'string'],
+                'description' => ['required', 'string'],
+            ]);
+        
+            return shippment::create([
+                'key' => str_random(11),
+                'user_id' => auth::id(),
+                'title' => $request ['title'],     
+                'shipperName' => $request ['shipperName'], 
+                'shipperNum' => $request ['shipperNum' ], 
+                'shipperAddress'  => $request ['shipperAddress'],
+                'recieverName' => $request ['recieverName'],
+                'recieverNum'  => $request ['recieverNum' ],
+                'recieverAddress' => $request ['recieverAddress'],
+                'type'        => $request ['type'],
+                'weight'      => $request ['weight'],
+                'departure'   => $request ['departure'],
+                'destination' => $request ['destination'],
+                'bookingMode' => $request ['bookingMode'],
+                'amount'      => $request ['amount'],
+                'mode'        => $request ['mode'],
+                'pickupDate'  => $request ['pickupDate'],
+                'description' => $request ['description'],
+            ]);
+        }
+        else{
+            return response()->json(['error' => 'Account is Disabled contact admin to enable it'], 422);
+        }
     }
-
-    // public function tracker(Request $request)
-    // {
-    //     $trackid = $request->key;
-    //     return = Shippment::where('key', $trackid)->with('info')->get();
-    //     return view('find')->with('find', $find);
-    // }
 
     public function update(Request $request, $id)
     {
-        $shippment = shippment::findOrFail($id);
-        $this->validate($request, [
-            'key' => [],                    
-            'title' => ['required', 'string' ], 
-            'shipperName' => ['required', 'string' ],
-            'shipperNum' => ['required', 'max:15' ],
-            'shipperAddress'  => ['required', 'string'],
-            'recieverName' => ['required', 'string'],
-            'recieverNum'  => ['required', 'max:15'],
-            'recieverAddress' => ['required', ],
-            'type'        => ['required', 'string'],
-            'weight'      => ['required'],
-            'departure'   => ['required', 'string'],
-            'destination' => ['required', 'string'],
-            'bookingMode' => ['required', 'string'],
-            'amount'      => ['required'],
-            'mode'        => ['required', 'string'],
-            'pickupDate'  => ['required', 'string'],
-            'description' => ['required', 'string'],
-        ]);
+        if(auth()->user()->type != 'disabled'){
+            $shippment = shippment::findOrFail($id);
+            $this->validate($request, [
+                'key' => [],                    
+                'title' => ['required', 'string' ], 
+                'shipperName' => ['required', 'string' ],
+                'shipperNum' => ['required', 'max:15' ],
+                'shipperAddress'  => ['required', 'string'],
+                'recieverName' => ['required', 'string'],
+                'recieverNum'  => ['required', 'max:15'],
+                'recieverAddress' => ['required', ],
+                'type'        => ['required', 'string'],
+                'weight'      => ['required'],
+                'departure'   => ['required', 'string'],
+                'destination' => ['required', 'string'],
+                'bookingMode' => ['required', 'string'],
+                'amount'      => ['required'],
+                'mode'        => ['required', 'string'],
+                'pickupDate'  => ['required', 'string'],
+                'description' => ['required', 'string'],
+            ]);
 
-        $shippment->update($request->all());
-        return ['message' => 'upate shippment'];
+            $shippment->update($request->all());
+            return ['message' => 'upate shippment'];
+        }
+        else{
+            return response()->json(['error' => 'Account is Disabled contact admin to enable it'], 422);
+        }
         
     }
 
