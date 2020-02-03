@@ -24,9 +24,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('service')}}">Services</a>
                             </li>
+                            @if(Auth::check())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('delivery')}}">delivery</a>
+                                <a class="nav-link" href="{{route('dashboard')}}">My Dashboard</a>
                             </li>
+                            @endif
                             <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
