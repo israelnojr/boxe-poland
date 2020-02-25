@@ -98,7 +98,8 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3>+1 (209) 3155 771</h3> 
+              <h3>+1 (209) 3155 771</h3>
+              <h3>+1 213-293-5305</h3>
               <p>Mon to Fri 9am to 6pm</p>
             </div>
           </div>
