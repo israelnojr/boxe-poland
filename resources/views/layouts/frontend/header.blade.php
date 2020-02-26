@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.message')
     <div class="search_input" id="search_input_box">
         <div class="container ">
             <form class="d-flex justify-content-between search-inner">

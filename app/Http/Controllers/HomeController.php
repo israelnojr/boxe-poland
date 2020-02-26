@@ -19,12 +19,18 @@ class HomeController extends Controller
 
     public function find(Request $request)
     {
-        $trackId = $request->key;
-        // return  Shippment::where('key', $trackId)->with('info')->get();
-        $shippments = shippment::where('key', $trackId)->get();
-        $infos = info::where('trackId', $trackId)->get();
-
-        return view('find', compact('shippments', 'infos'));
+      $request->validate([
+        'key' => 'required',
+      ]);
+      $trackId = $request->key;
+      $shippments = shippment::where('key', $trackId)->first();
+      $infos = info::where('trackId', $trackId)->first();
+      if($shippments === null && $infos === null){
+        return \redirect('/')->with('warning', 'Invalid Tracking Id');
+      }
+      else{
+        return view('find', compact('shippments', 'infos'))->with('success', 'Valid Tracking Id');
+      }
     }
 
     public function services()

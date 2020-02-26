@@ -5,8 +5,7 @@
             <div class="col-xl-3 col-sm-6 ">
                 <div class="single-footer-widget footer_1">
                     <a href="index.html"> <img src="{{asset('frontend/img/footer-logo.png')}}" alt=""> </a>
-                    <p>Ut enim ad minim veniam, quis nostrud cittion ullamco laboris
-                        nisi ut aliquip cosquat uis aute irure dolor.</p>
+                    <p>As an international logitics provider we've enjoyed a rapid growth around the globe. Today, we're among the world’s largest logistics company with over 21,000 employees and offices in over 80 countries and territories.</p>
                     <div class="working_hours">
                         <p>Working Hours: </p>
                         <p>Monday-Friday: <span>8AM - 6PM</span> </p>
