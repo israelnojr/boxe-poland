@@ -63,18 +63,17 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3>+1 (209) 3155 771</h3>
-              <h3>+1 213-293-5305</h3>
+              <h3>+48-732-232-270</h3>
               <p>Mon to Fri 9am to 6pm</p>
             </div>
           </div>
-          <!-- <div class="media contact-info">
+          <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3>Boxeshipping@hotmail.com</h3>
+              <h3>boxedelivery@gmail.com</h3>
               <p>Send us your query anytime!</p>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
