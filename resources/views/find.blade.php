@@ -9,13 +9,9 @@
                 <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Sender Informations</h5>
-                    @forelse($shippments as $shippment)
-                        <p class="card-text"> <strong>Sender Name:</strong> <span>{{$shippment->shipperName}}</span> </p>
-                        <p class="card-text"> <strong>Sender Phone No.:</strong> <span>{{$shippment->shipperNum}}</span> </p>
-                        <p class="card-text"> <strong>Sender Address:</strong> <span>{{$shippment->shipperAddress}}</span> </p>
-                    @empty
-                        <p class="card-text">No Shippment available</p>
-                    @endforelse
+                    <p class="card-text"> <strong>Sender Name:</strong> <span>{{$shippments->shipperName}}</span> </p>
+                    <p class="card-text"> <strong>Sender Phone No.:</strong> <span>{{$shippments->shipperNum}}</span> </p>
+                    <p class="card-text"> <strong>Sender Address:</strong> <span>{{$shippments->shipperAddress}}</span> </p>
                 </div>
                 </div>
             </div>
@@ -23,13 +19,9 @@
                 <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Receiver Informations</h5>
-                    @forelse($shippments as $shippment)
-                        <p class="card-text"> <strong>Receiver Name:</strong> <span>{{$shippment->recieverName}}</span> </p>
-                        <p class="card-text"> <strong>Receiver Phone No.:</strong> <span>{{$shippment->recieverNum}}</span> </p>
-                        <p class="card-text"> <strong>Receiver Address:</strong> <span>{{$shippment->recieverAddress}}</span> </p>
-                    @empty
-                        <p class="card-text">No Shippment available</p>
-                    @endforelse
+                    <p class="card-text"> <strong>Receiver Name:</strong> <span>{{$shippments->recieverName}}</span> </p>
+                    <p class="card-text"> <strong>Receiver Phone No.:</strong> <span>{{$shippments->recieverNum}}</span> </p>
+                    <p class="card-text"> <strong>Receiver Address:</strong> <span>{{$shippments->recieverAddress}}</span> </p>
                 </div>
                 </div>
             </div>
@@ -43,7 +35,6 @@
                     <!-- /.card-header -->
                 <div class="card-body table-responsive p-0 mb-3">
                     <table class="table table-borderless ">
-                        @foreach($shippments as $package)
                         <thead>
                             <tr>
                             <th scope="col">Option</th>
@@ -53,28 +44,27 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Package Type</th>
-                                <td colspan="2">{{$package->type}}</td>
+                                <td colspan="2">{{$shippments->type}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Package weight</th>
-                                <td colspan="2">{{$package->weight}}kg</td>
+                                <td colspan="2">{{$shippments->weight}}kg</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Package Departure</th>
-                                <td colspan="2">{{$package->departure}}</td>
+                                <td colspan="2">{{$shippments->departure}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Package Destination</th>
-                                <td colspan="2">{{$package->destination}}</td>
+                                <td colspan="2">{{$shippments->destination}}</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Possible Pickup Date</th>
-                                <td colspan="2">{{$package->pickupDate}}</td>
+                                <td colspan="2">{{$shippments->pickupDate}}</td>
                             </tr>
                         </tbody>
-                        @endforeach
                     </table>
                                
                     <table class="table  table-borderless table-dark">

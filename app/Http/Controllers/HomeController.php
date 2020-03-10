@@ -24,8 +24,8 @@ class HomeController extends Controller
       ]);
       $trackId = $request->key;
       $shippments = shippment::where('key', $trackId)->first();
-      $infos = info::where('trackId', $trackId)->first();
-      if($shippments === null && $infos === null){
+      $infos = info::where('trackId', $trackId)->get();
+      if($shippments === null || $infos === null){
         return \redirect('/')->with('warning', 'Invalid Tracking Id');
       }
       else{
